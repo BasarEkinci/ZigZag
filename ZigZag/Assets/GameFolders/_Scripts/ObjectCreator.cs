@@ -13,6 +13,7 @@ public class ObjectCreator : MonoBehaviour
     
     private GameObject newCube;
     private int cubeDirection;
+    private int cubeCount;
     private Vector3 firstSpawnPos;
     private void Start()
     {
@@ -35,6 +36,8 @@ public class ObjectCreator : MonoBehaviour
 
     private void CreateNewCube()
     {
+        if(cubeCount >= 40f) return;
+        
         cubeDirection = Random.Range(0, 2);
         if (!cubeDetector.XBounded && !cubeDetector.ZBounded)
         {
@@ -61,6 +64,7 @@ public class ObjectCreator : MonoBehaviour
             new Vector3(lastCube.transform.position.x - 1, lastCube.transform.position.y,
                 lastCube.transform.position.z), Quaternion.identity);
         lastCube = newCube;
+        cubeCount++;
     }
 
     private void SpawnCubeToZ()
@@ -71,5 +75,6 @@ public class ObjectCreator : MonoBehaviour
                 lastCube.transform.position.z + 1),
             quaternion.identity);
         lastCube = newCube;
+        cubeCount++;
     }
 }
