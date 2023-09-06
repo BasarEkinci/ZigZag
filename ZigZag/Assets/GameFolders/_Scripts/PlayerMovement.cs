@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (transform.position.y < 0.75f)
+            GameManager.Instance.IsGameOver = true;
         PlayerMover();
     }
 
@@ -29,11 +31,14 @@ public class PlayerMovement : MonoBehaviour
                 direction = Vector3.left;
             else
                 direction = Vector3.forward;
+            GameManager.Instance.Score++;
         }
     }
 
     private void PlayerMover()
     {
+        if (GameManager.Instance.IsGameOver) return;
+        
         ChangeDirection();
         transform.position += direction * (speed * Time.deltaTime);
     }

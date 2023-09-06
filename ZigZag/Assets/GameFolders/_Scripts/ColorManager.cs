@@ -21,11 +21,12 @@ public class ColorManager : MonoBehaviour
     private void Update()
     {
         ChangeColor();
-        Debug.Log(colorIndex);
     }
 
     private void ChangeColor()
     {
+        if (GameManager.Instance.IsGameOver) return;
+        
         newColor = colors[colorIndex]; 
         material.color = Color.Lerp(material.color, newColor, 0.5f * Time.deltaTime);
     }

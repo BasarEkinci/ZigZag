@@ -48,7 +48,7 @@ public class CubeCreator : MonoBehaviour
 
     private void CreateNewCube()
     {
-        if(GameManager.Instance.CubeCount >= 40f) return;
+        if(GameManager.Instance.CubeCount >= 40f || GameManager.Instance.IsGameOver) return;
         
         cubeDirection = Random.Range(0, 2);
         if (!cubeDetector.XBounded && !cubeDetector.ZBounded)
