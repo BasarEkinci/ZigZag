@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            SoundManager.Instance.PlayOneShot(1);
             if (direction == Vector3.forward)
                 direction = Vector3.left;
             else
