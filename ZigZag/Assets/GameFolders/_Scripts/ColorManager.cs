@@ -13,18 +13,33 @@ public class ColorManager : MonoBehaviour
     
     private void Start()
     {
-        material.color = Color.cyan;
-        StartCoroutine(ChangeColor());
+        colorIndex = 0;
+        material.color = colors[0];
+        StartCoroutine(ColorTimer());
     }
-    
-    IEnumerator ChangeColor()
+
+    private void Update()
+    {
+        ChangeColor();
+        Debug.Log(colorIndex);
+    }
+
+    private void ChangeColor()
+    {
+        newColor = colors[colorIndex]; 
+        material.color = Color.Lerp(material.color, newColor, 1f * Time.deltaTime);
+    }
+
+    IEnumerator ColorTimer()
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f);
-            colorIndex = Random.Range(0, colors.Count);
-            newColor = colors[colorIndex];
-            material.color = Color.Lerp(material.color, newColor, 0.5f);
+            yield return new WaitForSeconds(2f);
+            if( colorIndex == colors.Count - 1)
+                colorIndex = 0;
+            else if (colorIndex < colors.Count)
+                colorIndex++;
+                
         }
     }
 }

@@ -14,6 +14,7 @@ public class Diamond : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            GameManager.Instance.Score++;
             Destroy(gameObject);
         }
     }
