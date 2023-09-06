@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class CubeManager : MonoBehaviour
@@ -18,7 +17,7 @@ public class CubeManager : MonoBehaviour
             GameManager.Instance.CubeCount--;
         }
     }
-
+    
     private void OnCollisionExit(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))

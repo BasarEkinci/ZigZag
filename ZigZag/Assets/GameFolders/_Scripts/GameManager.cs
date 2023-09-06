@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,3 +11,5 @@ public class GameManager : MonoBehaviour
             Instance = this;
     }
 }
+
+

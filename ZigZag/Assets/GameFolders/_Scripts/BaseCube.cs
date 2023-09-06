@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class BaseCube : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionExit(Collision other)
     {
-        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            transform.DOMoveY(-4, 1f);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
