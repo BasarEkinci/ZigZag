@@ -3,18 +3,29 @@ using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ObjectCreator : MonoBehaviour
+public class CubeCreator : MonoBehaviour
 {
+    #region Variables
+
+    #region SerializedFields
+
     [SerializeField] GameObject cubePrefab;
     [SerializeField] GameObject lastCube;
     [SerializeField] CubeDetector cubeDetector;
-
     [SerializeField] float cubeSpawnRate;
-    
+
+    #endregion
+
+    #region Private Variables
+
     private GameObject newCube;
     private int cubeDirection;
-    private int cubeCount;
     private Vector3 firstSpawnPos;
+
+    #endregion
+
+    #endregion
+    
     private void Start()
     {
         GenerateCube();
@@ -28,7 +39,7 @@ public class ObjectCreator : MonoBehaviour
 
     private void GenerateCube()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             CreateNewCube();
         }
@@ -36,7 +47,7 @@ public class ObjectCreator : MonoBehaviour
 
     private void CreateNewCube()
     {
-        if(cubeCount >= 40f) return;
+        if(GameManager.Instance.CubeCount >= 40f) return;
         
         cubeDirection = Random.Range(0, 2);
         if (!cubeDetector.XBounded && !cubeDetector.ZBounded)
@@ -64,7 +75,7 @@ public class ObjectCreator : MonoBehaviour
             new Vector3(lastCube.transform.position.x - 1, lastCube.transform.position.y,
                 lastCube.transform.position.z), Quaternion.identity);
         lastCube = newCube;
-        cubeCount++;
+        GameManager.Instance.CubeCount++;
     }
 
     private void SpawnCubeToZ()
@@ -75,6 +86,6 @@ public class ObjectCreator : MonoBehaviour
                 lastCube.transform.position.z + 1),
             quaternion.identity);
         lastCube = newCube;
-        cubeCount++;
+        GameManager.Instance.CubeCount++;
     }
 }

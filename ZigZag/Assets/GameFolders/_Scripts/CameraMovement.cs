@@ -7,7 +7,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] float speed;
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         transform.position += new Vector3(-speed, 0, speed) * Time.deltaTime;
     }
