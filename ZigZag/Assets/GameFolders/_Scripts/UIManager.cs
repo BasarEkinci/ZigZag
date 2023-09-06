@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -52,7 +51,6 @@ public class UIManager : MonoBehaviour
             scoreText.gameObject.SetActive(true);
         }
     }
-
     private void SetText()
     {
         scoreText.text = GameManager.Instance.Score.ToString();
@@ -60,9 +58,10 @@ public class UIManager : MonoBehaviour
         highScoreText.text = "HighScore\n" + GameManager.Instance.HighScore;
         highScoreText2.text = "HighScore\n" + GameManager.Instance.HighScore;
     }
-    
-    
-    
+    public void SocialsButton()
+    {
+        Application.OpenURL("https://linktr.ee/basarekinci");
+    }
     public void RestartButton()
     {
         scoreText.gameObject.SetActive(true);
