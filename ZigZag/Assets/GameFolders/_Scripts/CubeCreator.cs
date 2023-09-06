@@ -11,6 +11,7 @@ public class CubeCreator : MonoBehaviour
 
     [SerializeField] GameObject cubePrefab;
     [SerializeField] GameObject lastCube;
+    [SerializeField] GameObject diamond;
     [SerializeField] CubeDetector cubeDetector;
     [SerializeField] float cubeSpawnRate;
 
@@ -39,7 +40,7 @@ public class CubeCreator : MonoBehaviour
 
     private void GenerateCube()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 1; i++)
         {
             CreateNewCube();
         }
@@ -75,6 +76,7 @@ public class CubeCreator : MonoBehaviour
             new Vector3(lastCube.transform.position.x - 1, lastCube.transform.position.y,
                 lastCube.transform.position.z), Quaternion.identity);
         lastCube = newCube;
+        SpawnDiamond();
         GameManager.Instance.CubeCount++;
     }
 
@@ -84,8 +86,20 @@ public class CubeCreator : MonoBehaviour
         newCube = Instantiate(cubePrefab,
             new Vector3(lastCube.transform.position.x, lastCube.transform.position.y,
                 lastCube.transform.position.z + 1),
-            quaternion.identity);
+            Quaternion.identity);
         lastCube = newCube;
+        SpawnDiamond();
         GameManager.Instance.CubeCount++;
+    }
+
+    private void SpawnDiamond()
+    {
+        Vector3 spanwPos = new Vector3(newCube.transform.position.x, newCube.transform.position.y + 0.8f,
+            newCube.transform.position.z);
+        int chance = Random.Range(0, 8);
+        if (chance < 3)
+        {
+            Instantiate(diamond, spanwPos,Quaternion.identity);
+        }
     }
 }
