@@ -27,14 +27,14 @@ public class ColorManager : MonoBehaviour
     private void ChangeColor()
     {
         newColor = colors[colorIndex]; 
-        material.color = Color.Lerp(material.color, newColor, 1f * Time.deltaTime);
+        material.color = Color.Lerp(material.color, newColor, 0.5f * Time.deltaTime);
     }
 
     IEnumerator ColorTimer()
     {
         while (true)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(10f);
             if( colorIndex == colors.Count - 1)
                 colorIndex = 0;
             else if (colorIndex < colors.Count)

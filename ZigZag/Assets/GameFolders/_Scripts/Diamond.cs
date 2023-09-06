@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Diamond : MonoBehaviour
 {
+    [SerializeField] GameObject exposionEffext;
     private void Start()
     {
         transform.DOMoveY(transform.position.y + 0.2f, 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
@@ -15,7 +16,8 @@ public class Diamond : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.Score++;
-            Destroy(gameObject);
+            Instantiate(exposionEffext, transform.position, Quaternion.identity);
+            Destroy(gameObject,0.1f);
         }
     }
 }
