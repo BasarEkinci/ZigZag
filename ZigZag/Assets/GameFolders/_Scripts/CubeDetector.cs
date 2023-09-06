@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class CubeDetector : MonoBehaviour
 {
-    public bool XBounded { get; private set; }
-    public bool ZBounded { get; private set; }
+    public bool XBounded { get;  set; }
+    public bool ZBounded { get;  set; }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("xBound"))
+        if (other.gameObject.CompareTag("xBound"))
         {
+            Debug.Log("xBounded");
             XBounded = true;
-            ZBounded = false;
-        }else if (other.CompareTag("zBound"))
+        }else if (other.gameObject.CompareTag("zBound"))
         {
+            Debug.Log("zBounded");
             ZBounded = true;
-            XBounded = false;
         }
     }
 }

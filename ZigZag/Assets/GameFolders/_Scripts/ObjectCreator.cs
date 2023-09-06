@@ -8,6 +8,8 @@ public class ObjectCreator : MonoBehaviour
     [SerializeField] GameObject cubePrefab;
     [SerializeField] GameObject lastCube;
     [SerializeField] CubeDetector cubeDetector;
+
+    [SerializeField] float cubeSpawnRate;
     
     private GameObject newCube;
     private int cubeDirection;
@@ -15,17 +17,17 @@ public class ObjectCreator : MonoBehaviour
     private void Start()
     {
         GenerateCube();
-        InvokeRepeating(nameof(CreateNewCube),0,1f);
+        InvokeRepeating(nameof(CreateNewCube),0,cubeSpawnRate);
     }
 
     private void Update()
     {
-        cubeDetector.transform.position = lastCube.transform.position;
+        cubeDetector.transform.position = newCube.transform.position;
     }
 
     private void GenerateCube()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 3; i++)
         {
             CreateNewCube();
         }
@@ -34,27 +36,39 @@ public class ObjectCreator : MonoBehaviour
     private void CreateNewCube()
     {
         cubeDirection = Random.Range(0, 2);
-        if (cubeDirection == 0 && !cubeDetector.XBounded)
+        if (!cubeDetector.XBounded && !cubeDetector.ZBounded)
+        {
+            if(cubeDirection == 0)
+                SpawnCubeToX();
+            else
+                SpawnCubeToZ();
+        }
+        else if (cubeDetector.XBounded)
+        {
+            SpawnCubeToZ();
+            cubeDetector.XBounded = false;
+        }
+        else if (cubeDetector.ZBounded)
         {
             SpawnCubeToX();
-        }
-        else
-        {
-            if(cubeDetector.ZBounded && !cubeDetector.ZBounded)
-                SpawnCubeToX();
-            SpawnCubeToZ();
+            cubeDetector.ZBounded = false;
         }
     }
 
     private void SpawnCubeToX()
     {
-        newCube = Instantiate(cubePrefab, new Vector3(lastCube.transform.position.x - 1, lastCube.transform.position.y, lastCube.transform.position.z),Quaternion.identity);
+        newCube = Instantiate(cubePrefab,
+            new Vector3(lastCube.transform.position.x - 1, lastCube.transform.position.y,
+                lastCube.transform.position.z), Quaternion.identity);
         lastCube = newCube;
     }
 
     private void SpawnCubeToZ()
     {
-        newCube = Instantiate(cubePrefab, new Vector3(lastCube.transform.position.x, lastCube.transform.position.y, lastCube.transform.position.z + 1),
+
+        newCube = Instantiate(cubePrefab,
+            new Vector3(lastCube.transform.position.x, lastCube.transform.position.y,
+                lastCube.transform.position.z + 1),
             quaternion.identity);
         lastCube = newCube;
     }
