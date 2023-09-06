@@ -2,18 +2,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed;
+    private float speed = 5f;
 
-    Rigidbody rigidbody;
     Vector3 direction;
-    private void Awake()
-    {
-        rigidbody = GetComponent<Rigidbody>();
-    }
-
     private void Start()
     {
         direction = Vector3.forward;
+        speed = 5;
     }
 
     private void Update()
@@ -21,10 +16,13 @@ public class PlayerMovement : MonoBehaviour
         if (transform.position.y < 0.75f)
             GameManager.Instance.IsGameOver = true;
         PlayerMover();
+        Debug.Log("Speed: " + speed);
     }
 
     private void ChangeDirection()
     {
+        if(GameManager.Instance.IsGameOver) return;
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (direction == Vector3.forward)
@@ -37,9 +35,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerMover()
     {
-        if (GameManager.Instance.IsGameOver) return;
-        
+        if (!GameManager.Instance.IsGameStarted) return;
         ChangeDirection();
+        if (GameManager.Instance.Score / 60 == 1)
+            speed += 0.1f * Time.deltaTime;
         transform.position += direction * (speed * Time.deltaTime);
     }
 }

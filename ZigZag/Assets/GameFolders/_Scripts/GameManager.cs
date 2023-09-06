@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,7 +8,10 @@ public class GameManager : MonoBehaviour
     public int CubeCount { get; set; }
     public int Score { get; set; }
     public bool IsGameOver { get; set; }
+    public bool IsGameStarted { get; set; }
+    public int HighScore { get; private set; }
 
+    private string highScore = "HighScore";
     private void Awake()
     {
         if (Instance == null)
@@ -16,7 +20,40 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        IsGameStarted = false;
         Score = 0;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+            StartGame();
+        
+        SetHighScore();
+    }
+
+    public void RestartGame()
+    {
+        IsGameOver = false;
+        IsGameStarted = false;
+        Score = 0;
+        SceneManager.LoadScene(0);
+    }
+
+    private void StartGame()
+    {
+        if (!IsGameStarted && !IsGameOver)
+            IsGameStarted = true;
+    }
+    private void SetHighScore()
+    {
+        if (Score > HighScore)
+        {
+            HighScore = Score;
+            PlayerPrefs.SetInt(highScore,HighScore);
+            PlayerPrefs.Save();
+        }
+        HighScore = PlayerPrefs.GetInt(highScore);
     }
 }
 

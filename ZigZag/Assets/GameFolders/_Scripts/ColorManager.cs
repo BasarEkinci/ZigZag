@@ -25,7 +25,7 @@ public class ColorManager : MonoBehaviour
 
     private void ChangeColor()
     {
-        if (GameManager.Instance.IsGameOver) return;
+        if (GameManager.Instance.IsGameOver || GameManager.Instance.IsGameStarted) return;
         
         newColor = colors[colorIndex]; 
         material.color = Color.Lerp(material.color, newColor, 0.5f * Time.deltaTime);
