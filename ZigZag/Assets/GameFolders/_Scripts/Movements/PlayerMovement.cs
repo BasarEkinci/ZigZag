@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,10 +14,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < 0.75f)
+        if (transform.position.y < 0.74f)
             GameManager.Instance.IsGameOver = true;
         PlayerMover();
-        Debug.Log("Speed: " + speed);
     }
 
     private void ChangeDirection()
@@ -38,8 +38,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.Instance.IsGameStarted) return;
         ChangeDirection();
-        if (GameManager.Instance.Score / 60 == 1)
-            speed += 0.1f * Time.deltaTime;
         transform.position += direction * (speed * Time.deltaTime);
     }
 }

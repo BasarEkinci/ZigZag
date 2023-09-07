@@ -15,12 +15,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        if(gameOverPanel.gameObject.activeSelf)
+        if(gameOverPanel.activeSelf)
             gameOverPanel.SetActive(false);
-        
         if(scoreText.gameObject.activeSelf)
             scoreText.gameObject.SetActive(false);
-        
         startText.transform.DOScale(Vector3.one * 1.1f, 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
     }
 
