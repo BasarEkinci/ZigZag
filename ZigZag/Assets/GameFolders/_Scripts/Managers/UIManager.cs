@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
         if (GameManager.Instance.IsGameOver)
         {
             scoreText.gameObject.SetActive(false);
+            SoundManager.Instance.PlayOneShot(2);
             gameOverPanel.transform.DOScale(Vector3.one, 0.1f);
         }
     }

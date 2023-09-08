@@ -3,17 +3,18 @@ public class PlayerMovement : MonoBehaviour
 {
     private float speed = 5.5f;
     private Rigidbody rb;
-    Vector3 direction;
+    private Vector3 direction;
 
     private void Awake() => rb = GetComponent<Rigidbody>();
-    private void Start() => direction = Vector3.forward;
+    private void Start() 
+    {
+        direction = Vector3.forward;
+    }
     private void Update()
     {
-        if (transform.position.y < 0.74f)
-        {
-            GameManager.Instance.IsGameOver = true;
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        }
+        if (transform.position.y <= 0.74f)
+            GameManager.Instance.GameOver();
+
         PlayerMover();
     }
     private void ChangeDirection()

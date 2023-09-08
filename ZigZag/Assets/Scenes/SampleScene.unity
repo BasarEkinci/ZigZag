@@ -2173,7 +2173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.0000042586, y: -246}
+  m_AnchoredPosition: {x: 0.0000042586, y: 0}
   m_SizeDelta: {x: 921.237, y: 353.357}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1001380605
@@ -3538,6 +3538,9 @@ MonoBehaviour:
   soundEffects:
   - {fileID: 8300000, guid: 70cfc21935412a14999ef5e027e82a5b, type: 3}
   - {fileID: 8300000, guid: 7b194507f580513439d207bd282c7f6a, type: 3}
+  - {fileID: 8300000, guid: 751ae8cadebf42b499595defc5e0f76d, type: 3}
+  - {fileID: 8300000, guid: 3d909d0f0d88b4c4e84e8d59a16edde3, type: 3}
+  - {fileID: 8300000, guid: a8b69518ad66eba47b35d8763e65b810, type: 3}
 --- !u!82 &1967465739
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3547,9 +3550,10 @@ AudioSource:
   m_GameObject: {fileID: 1967465736}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: fab8fd5db059a9d41bb88fd8906573ba,
+    type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
