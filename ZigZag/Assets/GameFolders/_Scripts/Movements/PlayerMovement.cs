@@ -4,8 +4,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float speed = 5f;
-
+    private Rigidbody rb;
     Vector3 direction;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Start()
     {
         direction = Vector3.forward;
@@ -14,8 +20,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < 0.74f)
+        if (transform.position.y < 0.749f)
+        {
             GameManager.Instance.IsGameOver = true;
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        }
+        Debug.Log("\nx: " + rb.velocity.x.ToString("0") + " y: " + rb.velocity.y.ToString("0"));
         PlayerMover();
     }
 

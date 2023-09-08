@@ -94,10 +94,10 @@ public class CubeCreator : MonoBehaviour
 
     private void SpawnDiamond()
     {
-        Vector3 spanwPos = new Vector3(newCube.transform.position.x, newCube.transform.position.y + 0.8f,
+        Vector3 spanwPos = new Vector3(newCube.transform.position.x, newCube.transform.position.y + 1.2f,
             newCube.transform.position.z);
         int chance = Random.Range(0, 8);
-        if (chance < 3)
+        if (chance < 2)
         {
             Instantiate(diamond, spanwPos,Quaternion.identity);
         }

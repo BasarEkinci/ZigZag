@@ -6,17 +6,16 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text scoreText2;
+    [SerializeField] TMP_Text gamesPlayedText;
     [SerializeField] TMP_Text highScoreText;
     [SerializeField] TMP_Text highScoreText2;
     [SerializeField] GameObject startText;
     [SerializeField] GameObject titleText;
     [SerializeField] GameObject gameOverPanel;
-    [SerializeField] GameObject socialsButton;
+    [SerializeField] GameObject socialsButtons;
 
     private void Start()
     {
-        if(gameOverPanel.activeSelf)
-            gameOverPanel.SetActive(false);
         if(scoreText.gameObject.activeSelf)
             scoreText.gameObject.SetActive(false);
         startText.transform.DOScale(Vector3.one * 1.1f, 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
@@ -34,7 +33,7 @@ public class UIManager : MonoBehaviour
         if (GameManager.Instance.IsGameOver)
         {
             scoreText.gameObject.SetActive(false);
-            gameOverPanel.gameObject.SetActive(true);
+            gameOverPanel.transform.DOScale(Vector3.one, 0.1f);
         }
     }
 
@@ -42,10 +41,11 @@ public class UIManager : MonoBehaviour
     {
         if(GameManager.Instance.IsGameStarted)
         {
-            socialsButton.transform.DOMoveX(-100f, 0.2f);
-            startText.transform.DOMoveY(-100f, 0.02f);
+            socialsButtons.transform.DOMoveY(-1000f, 0.5f).SetEase(Ease.OutBack);
+            startText.transform.DOScale(Vector3.zero, 0.2f);
             titleText.transform.DOMoveY(-100f, 0.02f);
-            highScoreText.transform.DOScale(Vector3.zero, 0.01f);
+            highScoreText.transform.DOScale(Vector3.zero, 0.1f);
+            gamesPlayedText.transform.DOScale(Vector3.zero, 0.1f);
             scoreText.gameObject.SetActive(true);
         }
     }
@@ -53,12 +53,13 @@ public class UIManager : MonoBehaviour
     {
         scoreText.text = GameManager.Instance.Score.ToString();
         scoreText2.text = "Score\n" + GameManager.Instance.Score;
-        highScoreText.text = "HighScore\n" + GameManager.Instance.HighScore;
-        highScoreText2.text = "HighScore\n" + GameManager.Instance.HighScore;
+        highScoreText.text = "High Score: " + GameManager.Instance.HighScore;
+        highScoreText2.text = "High Score\n" + GameManager.Instance.HighScore;
+        gamesPlayedText.text = "Games Played: " + GameManager.Instance.GamesPlayed;
     }
-    public void SocialsButton()
+    public void SocialsButton(string url)
     {
-        Application.OpenURL("https://linktr.ee/basarekinci");
+        Application.OpenURL(url);
     }
     public void RestartButton()
     {

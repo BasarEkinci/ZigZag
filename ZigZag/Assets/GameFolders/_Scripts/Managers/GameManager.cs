@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public int CubeCount { get; set; }
     public int Score { get; set; }
+    public int GamesPlayed = 0;
     public bool IsGameOver { get; set; }
     public bool IsGameStarted { get; set; }
     public int HighScore { get; private set; }
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
             StartGame();
-        
+        GamesPlayed = PlayerPrefs.GetInt("Games Played");   
         SetHighScore();
     }
 
@@ -37,6 +38,9 @@ public class GameManager : MonoBehaviour
         IsGameOver = false;
         IsGameStarted = false;
         Score = 0;
+        GamesPlayed++;
+        PlayerPrefs.SetInt("Games Played",GamesPlayed);
+        PlayerPrefs.Save();
         SceneManager.LoadScene(0);
     }
 
