@@ -23,23 +23,22 @@ public class ColorManager : MonoBehaviour
 
     private void ChangeColor()
     {
-        if (GameManager.Instance.IsGameOver || !GameManager.Instance.IsGameStarted) return;
-            
+        if(GameManager.Instance.IsGameOver && !GameManager.Instance.IsGameStarted) return;
+        
         newColor = colors[colorIndex]; 
         material.color = Color.Lerp(material.color, newColor, 0.5f * Time.deltaTime);
-        //SoundManager.Instance.PlayOneShot(3);
     }
 
     IEnumerator ColorTimer()
     {
         while (true)
         {
-            yield return new WaitForSeconds(10f);
-            if( colorIndex == colors.Count - 1)
+            yield return new WaitForSeconds(11f);
+            if (colorIndex == colors.Count - 1) 
                 colorIndex = 0;
             else if (colorIndex < colors.Count)
                 colorIndex++;
-                
+            SoundManager.Instance.PlayOneShot(3);
         }
     }
 }

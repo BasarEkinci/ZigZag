@@ -2,10 +2,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float speed = 5.5f;
-    private Rigidbody rb;
     private Vector3 direction;
-
-    private void Awake() => rb = GetComponent<Rigidbody>();
     private void Start() 
     {
         direction = Vector3.forward;
@@ -13,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         if (transform.position.y <= 0.74f)
-            GameManager.Instance.GameOver();
+            GameManager.Instance.IsGameOver = true;
 
         PlayerMover();
     }
@@ -29,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
                 direction = Vector3.left;
             else
                 direction = Vector3.forward;
-            
         }
     }
     private void PlayerMover()

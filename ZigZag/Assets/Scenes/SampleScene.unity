@@ -994,7 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02188d371fbf9e408cd0e0b39811588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.8
+  speed: 2.5
 --- !u!1 &391956877
 GameObject:
   m_ObjectHideFlags: 0
@@ -3009,7 +3009,7 @@ MeshRenderer:
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
-  m_MotionVectors: 0
+  m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
@@ -3082,7 +3082,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449221540}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -3401,15 +3401,16 @@ MonoBehaviour:
   - {r: 0, g: 0.83141136, b: 1, a: 1}
   - {r: 0, g: 1, b: 0.11449838, a: 1}
   - {r: 1, g: 0.89473504, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0.8569102, a: 1}
-  - {r: 0, g: 0.084820986, b: 1, a: 1}
+  - {r: 1, g: 0.28773582, b: 0.89944524, a: 1}
+  - {r: 0.25, g: 0.31470597, b: 1, a: 1}
   - {r: 1, g: 0.019385783, b: 0, a: 1}
   - {r: 0, g: 1, b: 0.23994875, a: 1}
   - {r: 1, g: 0.22755902, b: 0, a: 1}
   - {r: 0.4477749, g: 0, b: 1, a: 1}
   - {r: 0.68412244, g: 1, b: 0, a: 1}
-  - {r: 0.98889494, g: 0, b: 1, a: 1}
+  - {r: 0.9917315, g: 0.2971698, b: 1, a: 1}
   - {r: 1, g: 0.28504544, b: 0, a: 1}
+  - {r: 1, g: 0.28627452, b: 0, a: 1}
 --- !u!1 &1910946962
 GameObject:
   m_ObjectHideFlags: 0
@@ -3538,9 +3539,8 @@ MonoBehaviour:
   soundEffects:
   - {fileID: 8300000, guid: 70cfc21935412a14999ef5e027e82a5b, type: 3}
   - {fileID: 8300000, guid: 7b194507f580513439d207bd282c7f6a, type: 3}
-  - {fileID: 8300000, guid: 751ae8cadebf42b499595defc5e0f76d, type: 3}
-  - {fileID: 8300000, guid: 3d909d0f0d88b4c4e84e8d59a16edde3, type: 3}
   - {fileID: 8300000, guid: a8b69518ad66eba47b35d8763e65b810, type: 3}
+  - {fileID: 8300000, guid: 3d909d0f0d88b4c4e84e8d59a16edde3, type: 3}
 --- !u!82 &1967465739
 AudioSource:
   m_ObjectHideFlags: 0

@@ -82,7 +82,6 @@ public class CubeCreator : MonoBehaviour
 
     private void SpawnCubeToZ()
     {
-
         newCube = Instantiate(cubePrefab,
             new Vector3(lastCube.transform.position.x, lastCube.transform.position.y,
                 lastCube.transform.position.z + 1),

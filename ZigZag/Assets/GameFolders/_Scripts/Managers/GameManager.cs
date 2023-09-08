@@ -9,10 +9,11 @@ public class GameManager : MonoBehaviour
     public int Score { get; set; }
     public int GamesPlayed;
     public bool IsGameOver { get; set; }
-    public bool IsGameStarted { get; set; }
+    public bool IsGameStarted { get; private set; }
     public int HighScore { get; private set; }
 
     private string highScore = "HighScore";
+    private string gamesPlayed = "GamesPlayed";
     private void Awake()
     {
         if (Instance == null)
@@ -29,16 +30,17 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
             StartGame();
-        GamesPlayed = PlayerPrefs.GetInt("Games Played");   
+        GamesPlayed = PlayerPrefs.GetInt(gamesPlayed);   
         SetHighScore();
     }
 
     public void RestartGame()
     {
         IsGameOver = false;
+        IsGameStarted = false;
         Score = 0;
         GamesPlayed++;
-        PlayerPrefs.SetInt("Games Played",GamesPlayed);
+        PlayerPrefs.SetInt(gamesPlayed,GamesPlayed);
         PlayerPrefs.Save();
         SceneManager.LoadScene(0);
     }
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
         if (!IsGameStarted && !IsGameOver)
         {
             IsGameStarted = true;
-            SoundManager.Instance.PlayOneShot(4);
+            SoundManager.Instance.PlayOneShot(2);
         }
     }
     private void SetHighScore()
@@ -60,13 +62,6 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.Save();
         }
         HighScore = PlayerPrefs.GetInt(highScore);
-    }
-
-    public void GameOver()
-    {
-        IsGameOver = true;
-        IsGameStarted = false;
-        SoundManager.Instance.PlayOneShot(2);
     }
 }
 
